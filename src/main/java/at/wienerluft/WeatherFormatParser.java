@@ -1,6 +1,5 @@
 package at.wienerluft;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
@@ -17,6 +16,37 @@ public class WeatherFormatParser {
     public WeatherFormatParser(String msg) {
         this.msg = msg;
     }
+
+    public HashMap<String, String> getAsBQCSVPerStation() {
+        HashMap<String, String> retVal = new HashMap<String, String>();
+
+        for (String stationKey : readings.keySet()) {
+            WeatherStationRecord station = readings.get(stationKey);
+            retVal.put(station.getStationId(), station.getAsCSV());
+        }
+
+        return retVal;
+    }
+
+    public String getAsBQInsertChain() {
+        String retVal = "";
+        HashMap<String, String> stationMap = this.getAsBQCSVPerStation();
+
+        int i = 0;
+        for (String stationKey : stationMap.keySet()) {
+            String station = stationMap.get(stationKey);
+
+            if (i < stationMap.size()-1 ) {
+                retVal = retVal + station + ", ";
+            } else {
+                retVal = retVal + station;
+            }
+            i++;
+        }
+
+        return retVal;
+    }
+
 
     public HashMap<String, String> getAsJSONPerStation() {
         HashMap<String, String> retVal = new HashMap<String, String>();

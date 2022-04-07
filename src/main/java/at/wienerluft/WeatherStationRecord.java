@@ -26,6 +26,29 @@ public class WeatherStationRecord {
 
     }
 
+    public String getAsCSV() {
+        String csv = String.format("('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
+                getStationId(),
+                getDateTime(),
+                getWindSpeed(),
+                getWindDirection(),
+                getRf(),
+                getNo2(),
+                getNox(),
+                getPm10(),
+                getPm10_24(),
+                getPm25(),
+                getPm25_24(),
+                getO3(),
+                getO3_24(),
+                getS02(),
+                getCo(),
+                getCo_24()
+        );
+
+        return csv;
+    }
+
     public static void printAsString(WeatherStationRecord rec) {
         System.out.println("------------------------------------------------");
         System.out.println("stationId: " + rec.getStationId());
