@@ -90,39 +90,9 @@ public class Main {
         if (queryJob == null) {
             throw new Exception("job no longer exists");
         }
-        // once the job is done, check if any error occured
+
         if (queryJob.getStatus().getError() != null) {
             throw new Exception(queryJob.getStatus().getError().toString());
         }
-
-
-
-//        BigQuery bigquery = BigQueryOptions.newBuilder().setProjectId(bqProjectId).build().getService();
-
-
-
-//        final String INSERT_VEGETABLES =
-//                "INSERT INTO `sample-project-330313.sample_dataset.vegetables` (id, name) VALUES (1, 'carrot'), (2, 'beans');";
-//        QueryJobConfiguration queryConfig =
-//                QueryJobConfiguration.newBuilder(INSERT_VEGETABLES).build();
-
-
-//         Step 3: Run the job on BigQuery
-//        Job queryJob = bigquery.create(JobInfo.newBuilder(queryConfig).build());
-//        queryJob = queryJob.waitFor();
-//        if (queryJob == null) {
-//            throw new Exception("job no longer exists");
-//        }
-//        // once the job is done, check if any error occured
-//        if (queryJob.getStatus().getError() != null) {
-//            throw new Exception(queryJob.getStatus().getError().toString());
-//        }
-//
-//        // Step 4: Display results
-//        // Here, we will print the total number of rows that were inserted
-//        JobStatistics.QueryStatistics stats = queryJob.getStatistics();
-
-//        Long rowsInserted = stats.getDmlStats().getInsertedRowCount();
-//        System.out.printf("%d rows inserted\n", stats.getNumDmlAffectedRows());
     }
 }
