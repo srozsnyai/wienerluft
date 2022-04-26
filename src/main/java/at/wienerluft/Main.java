@@ -9,8 +9,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Main {
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
+
     private static String WR_API_URL = "https://www.wien.gv.at/ma22-lgb/umweltgut/lumesakt-v2.csv";
 
     private Scanner scanner;
@@ -49,20 +52,23 @@ public class Main {
         Main main = new Main(cmd.getOptionValue("bqProjectId"), cmd.getOptionValue("bqDataset"), cmd.getOptionValue("bqTable"));
     }
 
+
+
     public Main(String bqProjectId, String bqDataset, String bqTable) throws Exception {
         this.bqProjectId = bqProjectId;
         this.bqDataset = bqDataset;
         this.bqTable = bqTable;
 
-
+        logger.info("Reading API");
         String msg = readFromWeb(WR_API_URL);
+        logger.info("Parsing Message");
         WeatherFormatParser parser = new WeatherFormatParser(msg);
         HashMap<String, WeatherStationRecord> stationRecords = parser.parseMsg(msg);
 
         // TODO: remove debug prints
         // WeatherFormatParser.printStationRecords(stationRecords);
         // System.out.println(parser.getAsBQInsertChain());
-
+        logger.info("Writing to BQ");
         writeToBQ(parser);
 
     }
@@ -80,7 +86,8 @@ public class Main {
         String attributes = "stationId, dateTime, windSpeed, windDirection, rf, no2, nox, pm10, pm10_24, pm25, pm25_24, o3, o3_24, S02,CO, CO_24";
         String insertSql = String.format("INSERT INTO `%s` (%s) VALUES %s", fqTable, attributes, parser.getAsBQInsertChain());
 
-        System.out.println(insertSql);
+//      TODO: remove debug prints
+      System.out.println(insertSql);
 
         BigQuery bigquery = BigQueryOptions.getDefaultInstance().getService();
         QueryJobConfiguration queryConfig = QueryJobConfiguration.newBuilder(insertSql).build();
