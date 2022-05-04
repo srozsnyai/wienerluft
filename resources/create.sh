@@ -28,7 +28,6 @@ nox:STRING,pm10:STRING,pm10_24:STRING,pm25:STRING,\
 pm25_24:STRING,o3:STRING,o3_24:STRING,S02:STRING,\
 CO:STRING,CO_24:STRING
 
-
 echo "# Creating topic 'wienerlufttriggertopic': $1";
 gcloud pubsub topics create wienerlufttriggertopic --project=$1
 
