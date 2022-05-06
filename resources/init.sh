@@ -7,6 +7,7 @@ gcloud services enable bigquery.googleapis.com
 gcloud services enable cloudscheduler.googleapis.com
 gcloud services enable cloudfunctions.googleapis.com
 gcloud services enable pubsub.googleapis.com
+gcloud storage-api.googleapis.com
 
 
 echo "Create Service Account & Permissions"
