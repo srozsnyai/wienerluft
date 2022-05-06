@@ -21,9 +21,6 @@ bq rm -d=true -f=true ${PROJECTID}:wienerluft
 echo "# Delete topic 'wienerlufttriggertopic': ${PROJECTID}";
 gcloud pubsub topics delete wienerlufttriggertopic
 
-#echo "# Delete zip"
-#rm -f ../target/wienerluftcode.zip
-
 echo "# Delete GCS bucket "
 yes | gcloud alpha storage rm --recursive gs://${PROJECTID}wienerluftstaging
 
