@@ -1,3 +1,3 @@
 #!/bin/bash
 
-WORKFLOWSA=sawienerluft2
+. ./config.sh
