@@ -56,21 +56,7 @@ gcloud functions deploy wienerluftcf \
 --source=gs://${PROJECTID}wienerluftstaging/wienerluftcode.zip \
 --memory=128MB
 
-echo "# Creating Workflow to send Pub/Sub msg to trigger CF"
-#gcloud workflows deploy wienerluftscheduler \
-#   --source=workflow.yml \
-#   --service-account=${WORKFLOWSA}@${PROJECTID}.iam.gserviceaccount.com \
-#   --location="europe-west1"
-
 echo "# Creating Cloud Scheduler to trigger Workflow"
-#gcloud scheduler jobs create http wienerlufttrigger \
-#--schedule="*/15 * * * *" \
-#--uri="https://workflowexecutions.googleapis.com/v1/projects/${PROJECTID}/locations/europe-west1/workflows/wienerluftscheduler/executions" \
-#--message-body="{\"argument\": \"start\"}" \
-#--time-zone="Europe/Vienna" \
-#--location="europe-west1" \
-#--oauth-service-account-email="${WORKFLOWSA}@${PROJECTID}.iam.gserviceaccount.com"
-
 gcloud scheduler jobs create pubsub wienerlufttrigger \
 --schedule="*/15 * * * *" \
 --topic=wienerlufttriggertopic \

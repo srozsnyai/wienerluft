@@ -1,15 +1,9 @@
 #!/bin/bash
 
-#echo "# Cleaning up ProjectID: ${PROJECTID}";
-#gcloud config set project ${PROJECTID}
-
 . ./config.sh
 
 echo "# Delete Cloud Scheduler"
 yes | gcloud scheduler jobs delete wienerlufttrigger
-
-#echo "# Delete Cloud Workflow Trigger"
-
 
 echo "# Delete Cloud Function"
 yes | gcloud functions delete wienerluftcf \
