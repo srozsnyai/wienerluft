@@ -15,6 +15,9 @@ bq rm -t=true -f=true ${PROJECTID}:wienerluft.raw
 echo "# Deleting Table: ${PROJECTID}:wienerluft.stations";
 bq rm -t=true -f=true ${PROJECTID}:wienerluft.stations
 
+echo "# Deleting View: ${PROJECTID}:wienerluft.metrics";
+bq rm -t=true -f=true ${PROJECTID}:wienerluft.metrics
+
 echo "# Deleting Dataset: ${PROJECTID}:wienerluft.raw";
 bq rm -d=true -f=true ${PROJECTID}:wienerluft
 

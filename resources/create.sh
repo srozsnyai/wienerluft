@@ -23,6 +23,14 @@ nox:STRING,pm10:STRING,pm10_24:STRING,pm25:STRING,\
 pm25_24:STRING,o3:STRING,o3_24:STRING,S02:STRING,\
 CO:STRING,CO_24:STRING
 
+echo "# Creating view: metrics"
+bq mk \
+--use_legacy_sql=false \
+--description "typed readings view" \
+--project_id ${PROJECTID} \
+--view "`cat metrics.sql | sed 's/${PROJECTID}/utopian-pier-179212/g'`" \
+wienerluft.metrics
+
 echo "# Creating topic 'wienerlufttriggertopic': ${PROJECTID}";
 gcloud pubsub topics create wienerlufttriggertopic --project=${PROJECTID}
 
