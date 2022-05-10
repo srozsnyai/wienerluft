@@ -1,4 +1,4 @@
- SELECT * FROM
+SELECT a.*, b.stationname FROM
        (
        SELECT
        stationId,
