@@ -7,4 +7,4 @@ gcloud services enable bigquery.googleapis.com
 gcloud services enable cloudscheduler.googleapis.com
 gcloud services enable cloudfunctions.googleapis.com
 gcloud services enable pubsub.googleapis.com
-gcloud storage-api.googleapis.com
+gcloud services enable storage-api.googleapis.com
