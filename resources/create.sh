@@ -28,7 +28,7 @@ bq mk \
 --use_legacy_sql=false \
 --description "typed readings view" \
 --project_id ${PROJECTID} \
---view "`cat metrics.sql | sed 's/${PROJECTID}/utopian-pier-179212/g'`" \
+--view "`cat metrics.sql | sed 's/PROJECTID/${PROJECTID}/g'`" \
 wienerluft.metrics
 
 echo "# Creating topic 'wienerlufttriggertopic': ${PROJECTID}";
