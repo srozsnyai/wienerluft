@@ -56,4 +56,5 @@ echo "# Creating Cloud Scheduler to trigger Workflow"
 gcloud scheduler jobs create pubsub wienerlufttrigger \
 --schedule="*/15 * * * *" \
 --topic=wienerlufttriggertopic \
---message-body="Hello"
+--message-body="Hello" \
+--location=europe-west1
