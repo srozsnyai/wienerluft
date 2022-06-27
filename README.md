@@ -17,7 +17,7 @@ The opinions stated here are my own, not those of Google.
 ![Architecture](resources/architecture.png)
 
 #### Data Pipeline
-The Cloud Scheduler emits every 15min a a pub/sub message to trigger the execution of a Cloud Function. The Cloud Function runs a Java-based application which calls the Stadt Wien API. This API returns the current readings from all the AQ stations. The cloud function parses the returned message and writes them into a BQ table in their raw format (i.e. tabular but untyped data types). 
+The Cloud Scheduler emits every 15min a a pub/sub message to trigger the execution of a Cloud Function. The Cloud Function runs a Java-based application which calls the Stadt Wien API. This API returns the current readings from all the AQ stations. The cloud function parses the returned message and writes them into a BQ table in their raw format (i.e. tabular but untyped). 
 
 #### Storage & Analytics
 A BQ view is used to type the individual attributes that have been previously stored as simple string values.
@@ -55,8 +55,6 @@ SELECT
 
 The view is the source table for the DataStudio report which is embedded in a static webpage. 
 This static webpage is served from a GCP bucket.  
-
-## Cost of running on GCP
 
 ## Installation
 ### Resources which will be used

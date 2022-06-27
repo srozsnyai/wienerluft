@@ -24,15 +24,6 @@ public class TriggerPubSub implements BackgroundFunction<Message> {
         logger.info(String.format("Starting projectId: %s bqDataset %s bqTable %s", bqProjectId, bqDataset, bqTable));
         Main main = new Main(bqProjectId, bqDataset, bqTable);
         return;
-
-//        String name = "world";
-//        if (message != null && message.getData() != null) {
-//            name = new String(
-//                    Base64.getDecoder().decode(message.getData().getBytes(StandardCharsets.UTF_8)),
-//                    StandardCharsets.UTF_8);
-//        }
-//        logger.info(String.format("Hello %s!", name));
-
     }
 
 }

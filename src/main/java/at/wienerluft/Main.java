@@ -65,9 +65,6 @@ public class Main {
         WeatherFormatParser parser = new WeatherFormatParser(msg);
         HashMap<String, WeatherStationRecord> stationRecords = parser.parseMsg(msg);
 
-        // TODO: remove debug prints
-        // WeatherFormatParser.printStationRecords(stationRecords);
-        // System.out.println(parser.getAsBQInsertChain());
         logger.info("Writing to BQ");
         writeToBQ(parser);
 
@@ -85,9 +82,6 @@ public class Main {
         String fqTable = String.format("%s.%s.%s", bqProjectId, bqDataset, bqTable);
         String attributes = "stationId, dateTime, windSpeed, windDirection, rf, no2, nox, pm10, pm10_24, pm25, pm25_24, o3, o3_24, S02,CO, CO_24";
         String insertSql = String.format("INSERT INTO `%s` (%s) VALUES %s", fqTable, attributes, parser.getAsBQInsertChain());
-
-//      TODO: remove debug prints
-      System.out.println(insertSql);
 
         BigQuery bigquery = BigQueryOptions.getDefaultInstance().getService();
         QueryJobConfiguration queryConfig = QueryJobConfiguration.newBuilder(insertSql).build();

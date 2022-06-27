@@ -8,7 +8,7 @@ public class WeatherStationRecord {
     private String dateTime;
     private String windSpeed;
     private String windDirection;
-    private String rf; // unknown what this is
+    private String rf;
     private String no2;
     private String nox;
     private String pm10;
